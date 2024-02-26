@@ -1,0 +1,8 @@
+<mat-form-field class="list-form" appearance="fill">
+  <mat-select class="list-select" name="selectedMonth" [(ngModel)]="this.selectedMonth"
+    (selectionChange)="onSelectionChangeMonth(this.selectedMonth)">
+    <mat-option class="list-option" *ngFor="let month of months" [value]="month.name">{{month.name}}
+    </mat-option>
+  </mat-select>
+  <mat-hint align="end" class="t-min gray">Місяць</mat-hint>
+</mat-form-field>

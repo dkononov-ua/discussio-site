@@ -1,0 +1,72 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss" as *;
+
+mat-dialog-content {
+  padding: 5px !important;
+  font-family: $font-main;
+}
+
+.message-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.t-min {
+  font-size: 11px;
+  line-height: 12px;
+  color: $color-gray;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.294);
+}
+
+h3 {
+  text-align: center;
+}
+
+.accent {
+  font-weight: 600;
+}
+
+.btn {
+  width: 100%;
+}
+
+.text1 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.text {
+  font-size: 14px;
+  text-align: center;
+  color: $color-gray;
+}
+
+.box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.accent {
+  text-align: center;
+  color: $color-accent;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.description {
+  font-size: 12px;
+}

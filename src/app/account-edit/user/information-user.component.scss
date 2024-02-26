@@ -1,0 +1,42 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss";
+
+.item-select {
+  flex-direction: column-reverse;
+}
+
+.card-box {
+  @include flex-box-center;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 85vh;
+}
+
+.img-wrapper {
+  width: 100%;
+  .img {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+}
+
+.card-1 {
+  width: 100%;
+  display: flex;
+  color: $color-dark;
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-group {
+  @include flex-box-center;
+  justify-content: space-evenly;
+}
+

@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="title">
+    <div [@left] class="t-lar-xx bold mt-2 pl-2">Команда розробників</div>
+    <div [@left1] class="t-lar-xx accent bold pl-2 border-bottom">Discussio</div>
+  </div>
+  <div [@left2] class="flex-column border-bottom mt-2" *ngFor="let member of teamMembers">
+    <div class="wrapper w-100">
+      <img class="img" src="{{ member.image }}" alt="{{ member.name }}">
+    </div>
+    <div class="flex-column w-100">
+      <div class="t-lar-xx">{{ member.name }}</div>
+      <p class="t-lar bold">{{ member.position }}</p>
+      <p class="t-med p-2">{{ member.description }}</p>
+      <div class="flex-box">
+        <a *ngIf="member.social.telegram" href="{{ member.social.telegram }}"><i
+            class="fab fa-brands fa-telegram"></i></a>
+        <a *ngIf="member.social.instagram" href="{{ member.social.instagram }}"><i
+            class="fab fa-brands fa-instagram"></i></a>
+        <a *ngIf="member.social.linkedin" href="{{ member.social.linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+  </div>
+  <div class="btn-group w-100 p-2">
+    <button class="btn w-100" [routerLinkActive]="'active'" [routerLink]="'/user/info'">
+      <div class="icon"><i class="fa-solid fa-arrow-left"></i></div>
+      <div class="t-min dark bold pl-2">Назад</div>
+    </button>
+  </div>
+</div>

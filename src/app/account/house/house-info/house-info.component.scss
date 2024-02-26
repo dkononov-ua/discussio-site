@@ -1,0 +1,37 @@
+@use "../../../style/presets/" as *;
+@use "../../../style/mixins/" as *;
+@use "../../../style/shared.scss";
+
+.card-box {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 85vh;
+  overflow: hidden;
+}
+.top-menu {
+  height: 15vh;
+}
+
+.card {
+  height: 85vh;
+}
+
+.switch-box {
+  width: 40%;
+}
+
+.switch-name {
+  font-size: 25px;
+  font-weight: 600;
+  color: $color-dark;
+  text-align: center;
+}
+
+.switch-btn-group {
+  .btn {
+    width: 50px;
+  }
+}

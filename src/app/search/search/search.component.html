@@ -1,0 +1,54 @@
+<ng-container *ngIf="loading; else content">
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-template #content>
+  <div class="card-box">
+    <div class="menu-img-wrapper p-2">
+      <div [@left1] class="param-box">
+        <div class="flex-group">
+          <button [disabled]="!selectedFlatId" class="link-t flex-box-row" [routerLinkActive]="'active'"
+            [routerLink]="'/search-tenants'">
+            <i class="fa-solid fa-arrow-left"></i><span class="ml-2">Пошук орендаря</span>
+            <div class="t-min t-c" *ngIf="!selectedFlatId">Доступний після входу в аккаунт оселі</div>
+            <div class="t-min t-c" *ngIf="selectedFlatId">Знайдемо орендаря для вашої оселі</div>
+          </button>
+          <div class="feedback-box p-2 ">
+            <button class="feedback-box-btn" [routerLink]="'/feedback'"
+              [queryParams]="{ category: 'Пошук орендаря' }">
+              <div class="t-med mr-2 white">Відгук до пошуку орендяря</div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex-box-logo w-100 p-2">
+        <img class="logo" src="{{path_logo}}" alt="logo">
+        <div class="t-lar-xx bold white">Discussio</div>
+        <div class="t-lar-xx bold white">Пошук</div>
+      </div>
+      <div [@right2] class="param-box">
+        <div class="flex-group">
+          <div class="feedback-box p-2">
+            <button class="feedback-box-btn" [routerLink]="'/feedback'"
+              [queryParams]="{ category: 'Пошук оселі' }">
+              <div class="t-med mr-2 white">Відгук до пошуку оселі</div>
+            </button>
+          </div>
+          <button [disabled]="!openSearchHouse" class="link-t flex-box-row" [routerLinkActive]="'active'"
+            [routerLink]="'/search-house'">
+            <span>Пошук оселі</span><i class="fa-solid fa-arrow-right ml-2"></i>
+            <div class="t-min t-c" *ngIf="!openSearchHouse">Доступний після реєстрації</div>
+            <div class="t-min t-c" *ngIf="openSearchHouse">знайдемо оселю за вашими побажаннями</div>
+          </button>
+        </div>
+      </div>
+      <img class="menu-img" src="../../../../../assets/example-agree/search6.jpg" alt="img">
+      <div class="btn-group2 w-100 p-2">
+        <button class="btn2 w-100" [routerLinkActive]="'active'" [routerLink]="'/user/info'">
+          <i class="fa-solid fa-arrow-left"></i>
+          <div class="t-min white bold pl-2">Назад</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

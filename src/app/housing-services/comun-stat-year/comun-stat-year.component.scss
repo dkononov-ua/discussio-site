@@ -1,0 +1,12 @@
+@use "../housing-table.scss";
+@use "../../style/shared.scss" as *;
+
+.mat-form-field {
+  height: 58px;
+  border-radius: 5px;
+}
+
+.flex-box {
+  align-items: stretch;
+  justify-content: flex-end;
+}

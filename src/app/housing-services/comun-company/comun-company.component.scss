@@ -1,0 +1,74 @@
+@use "../housing-services.component.scss";
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+
+.flex-box {
+  display: flex;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: flex-end;
+  height: 100%;
+  align-content: space-between;
+  .btn-group {
+    height: 60px;
+  }
+}
+
+.flex-column {
+  justify-content: flex-end;
+  height: 90%;
+  overflow: auto;
+}
+
+.flex-column::-webkit-scrollbar {
+  display: none;
+}
+
+.card-1 {
+  position: absolute;
+  left: -50%;
+  width: 250px;
+  height: auto;
+  @include box-shadow;
+  border-radius: 20px;
+
+  .img-wpapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    align-items: flex-end;
+  }
+
+  .img {
+    overflow: hidden;
+    height: 75vh;
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 1s;
+    object-fit: cover;
+    position: relative;
+  }
+}
+
+.item-select {
+  position: relative;
+}
+
+.btn-copy {
+  font-size: 30px;
+  background-color: $color-white;
+  border: none;
+  border-radius: 5px;
+  padding: 2px;
+}

@@ -1,0 +1,142 @@
+<div class="switch-content">
+  <div class="switch-name">
+    <div [@left] *ngIf="indexPage === 0">Налаштування оселі</div>
+    <div [@left] *ngIf="indexPage === 1">Розташування оселі</div>
+    <div [@left] *ngIf="indexPage === 2">Параметри оселі</div>
+    <div [@left] *ngIf="indexPage === 3">Фото оселі</div>
+    <div [@left] *ngIf="indexPage === 4">Особливості оселі</div>
+    <div [@left] *ngIf="indexPage === 5">Допоміжна інформація</div>
+  </div>
+  <div class="switch-box">
+    <div [@left] class="switch-btn-group">
+      <button class="btn" [routerLinkActive]="'active'" [routerLink]="'/house/house-info'">
+        <i class="fa-solid fa-arrow-left"></i>
+        <div class="t-min dark bold">Назад</div>
+      </button>
+    </div>
+    <div [@left1] class="switch-btn-group" *ngIf="acces_admin === 1 && acces_flat_features === 1">
+      <button class="btn" [ngClass]="{'active': indexPage === 1}" (click)="indexPage = 1">
+        <i class="fa-solid fa-location-dot"></i>
+        <div class="t-min">Розт.</div>
+      </button>
+    </div>
+    <div [@left] class="switch-btn-group" *ngIf="acces_admin === 1 && acces_flat_features === 1">
+      <button class="btn" [ngClass]="{'active': indexPage === 2}" (click)="indexPage = 2">
+        <i class="fa-solid fa-trowel-bricks"></i>
+        <div class="t-min">Парам.</div>
+      </button>
+    </div>
+
+    <div [@left2] class="switch-btn-group" *ngIf="acces_admin === 1 && acces_flat_features === 1">
+      <button class="btn" [ngClass]="{'active': indexPage === 3}" (click)="indexPage = 3">
+        <i class="fa-solid fa-images"></i>
+        <div class="t-min">Фото</div>
+      </button>
+    </div>
+
+    <div [@left1] class="switch-btn-group" *ngIf="acces_flat_features === 1">
+      <button class="btn" [ngClass]="{'active': indexPage === 4}" (click)="indexPage = 4">
+        <i class="fa-solid fa-users-gear"></i>
+        <div class="t-min">Особл.</div>
+      </button>
+    </div>
+
+    <div [@left3] class="switch-btn-group" *ngIf="acces_flat_features === 1">
+      <button class="btn" [ngClass]="{'active': indexPage === 5}" (click)="indexPage = 5">
+        <i class="fa-regular fa-address-book"></i>
+        <div class="t-min">Додат.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="card-box" *ngIf="!addHouse && selectedFlatId">
+  <div class="card-animation" *ngIf="indexPage === 0">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <div class="flex-column p-2">
+        <div class="t-lar gray bold t-c mb-2 pl-2 mb-1">Шлях по кроках як розмістити оголошення.</div>
+        <div [@left1] class="item-box1">
+          <div class="item-d w-70">
+            <div class="t-med gray bold">Крок 1*</div>
+            <div class="t-min t-c p-1">Після створення оселі заповніть форму в меню "Розтушування".</div>
+          </div>
+          <button class="link-toMenu w-30 flex-column" (click)="indexPage = 1">
+            <span class="ml-2 t-min">Розтушування</span>
+            <i class="fa-solid fa-location-dot ml-2 ml-2"></i>
+          </button>
+        </div>
+        <div [@left2] class="item-box1">
+          <div class="item-d w-70">
+            <div class="t-med gray bold">Крок 2*</div>
+            <div class="t-min t-c p-1">Заповнюємо форму в меню "Параметри" в якому треба <span
+                class="accent bold">обов'язково
+                вказати
+                тип оселі*</span> .</div>
+          </div>
+          <button class="link-toMenu w-30 flex-column" (click)="indexPage = 2">
+            <span class="ml-2 t-min">Параметри</span>
+            <i class="fa-solid fa-trowel-bricks ml-2"></i>
+          </button>
+        </div>
+        <div [@left3] class="item-box1">
+          <div class="item-d w-70">
+            <div class="t-med gray bold">Крок 3*</div>
+            <div class="t-min t-c p-1">Додайте фото оселі в меню "Додати фото", для розміщення оголошення оселі <span
+                class="accent bold">фото обов'язкове*</span>.</div>
+          </div>
+          <button class="link-toMenu w-30 flex-column" (click)="indexPage = 3">
+            <span class="ml-2 t-min">Додати фото</span>
+            <i class="fa-solid fa-images ml-2"></i>
+          </button>
+        </div>
+        <div [@left4] class="item-box1">
+          <div class="item-d w-70">
+            <div class="t-med gray bold">Крок 4*</div>
+            <div class="t-min t-c p-1">Меню "Особливості" обов'язково вказати
+              <span class="accent bold">варіанти оплати, ціну, формат здачі*</span> та "Активувати".
+            </div>
+          </div>
+          <button class="link-toMenu w-30 flex-column" (click)="indexPage = 4">
+            <span class="ml-2 t-min">Особливості</span>
+            <i class="fa-solid fa-users-gear ml-2"></i>
+          </button>
+        </div>
+        <div [@left5] class="item-description p-2">
+          <div class="t-min gray t-c bold">Після цих кроків оголошення буде розміщено в меню "пошук оселі"</div>
+        </div>
+        <div class="feedback-box p-2">
+          <button class="feedback-box-btn" [routerLink]="'/feedback'"
+            [queryParams]="{ category: 'Налаштування оселі' }">
+            <div class="t-med bold mr-2">Запропонувати зміни</div>
+            <i class="fa-solid fa-arrow-right gray"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation p-2" *ngIf="indexPage === 1">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <app-address></app-address>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation p-2" *ngIf="indexPage === 2">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <app-param></app-param>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation" *ngIf="indexPage === 3">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <app-photo></app-photo>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation p-2" *ngIf="indexPage === 4">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <app-about></app-about>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation p-2" *ngIf="indexPage === 5">
+    <div (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" class="card">
+      <app-additional-info></app-additional-info>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+@use "../presets" as *;
+$diff: 0.2px;
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану більше або рівно 1340 пікселів.
+@mixin s6-max {
+  @media (min-width: $s6) {
+    @content;
+  }
+}
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану від 1200 до 1339 пікселів.
+@mixin s5-s6 {
+  @media (max-width: ($s6 - $diff)) and (min-width: $s5) {
+    @content;
+  }
+}
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану від 992 до 1340 пікселів.
+@mixin s4-s6 {
+  @media (max-width: ($s5 - $diff)) and (min-width: $s4) {
+    @content;
+  }
+}
+
+@mixin s4-s5 {
+  @media (max-width: ($s5 - $diff)) and (min-width: $s4) {
+    @content;
+  }
+}
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану від 768 до 1340 пікселів.
+@mixin s3-s6-max {
+  @media (min-width: $s3) {
+    @content;
+  }
+}
+
+@mixin s3-s6 {
+  @media (max-width: ($s6 - $diff)) and (min-width: $s3) {
+    @content;
+  }
+}
+
+@mixin s3-s5 {
+  @media (max-width: ($s5 - $diff)) and (min-width: $s3) {
+    @content;
+  }
+}
+
+@mixin s3-s4 {
+  @media (max-width: ($s4 - $diff)) and (min-width: $s3) {
+    @content;
+  }
+}
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану від 576 до 1340 пікселів.
+@mixin s2-s6 {
+  @media (max-width: ($s6 - $diff)) and (min-width: $s2) {
+    @content;
+  }
+}
+
+@mixin s2-s5 {
+  @media (max-width: ($s5 - $diff)) and (min-width: $s2) {
+    @content;
+  }
+}
+
+@mixin s2-s4 {
+  @media (max-width: ($s4 - $diff)) and (min-width: $s2) {
+    @content;
+  }
+}
+
+@mixin s2-s3 {
+  @media (max-width: ($s3 - $diff)) and (min-width: $s2) {
+    @content;
+  }
+}
+
+
+// Міксин для медіа-запита, який включає стилі при розширенні екрану від 1 до 1340 пікселів.
+@mixin s1-s6 {
+  @media (max-width: ($s6 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s5 {
+  @media (max-width: ($s5 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s4 {
+  @media (max-width: ($s4 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s3plus {
+  @media (max-width: ($s4 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s3 {
+  @media (max-width: ($s3 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s2plus {
+  @media (max-width: ($s3 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}
+
+@mixin s1-s2 {
+  @media (max-width: ($s2 - $diff)) and (min-width: $s1) {
+    @content;
+  }
+}

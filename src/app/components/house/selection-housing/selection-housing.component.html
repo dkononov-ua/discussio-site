@@ -1,0 +1,152 @@
+<ng-container *ngIf="loading; else content">
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-template #content>
+  <div class="container-box">
+
+    <div class="top-menu">
+
+      <div class="switch-name">
+        <div [@left1] *ngIf="indexPage  === 0">Створення оселі</div>
+        <div [@left1] *ngIf="indexPage  === 1">Вибір оселі</div>
+      </div>
+
+      <div class="switch-box">
+
+        <div class="switch-btn-group" *ngIf="selectedFlatId">
+          <button class="btn" [routerLinkActive]="'active'" [routerLink]="'/house/house-info'">
+            <i class="fa-solid fa-arrow-left"></i>
+            <div class="t-min">Назад</div>
+          </button>
+        </div>
+
+        <div class="switch-btn-group" *ngIf="!selectedFlatId">
+          <button class="btn" [routerLinkActive]="'active'" [routerLink]="'/user/info'">
+            <i class="fa-solid fa-arrow-left"></i>
+            <div class="t-min">Назад</div>
+          </button>
+        </div>
+
+        <div class="switch-btn-group">
+          <button class="btn" [ngClass]="{'active': indexPage === 1}" (click)="indexPage = 1">
+            <i class="fa-solid fa-house-circle-check"></i>
+            <div class="t-min">Вибір оселі</div>
+          </button>
+        </div>
+
+        <div class="switch-btn-group">
+          <button class="btn" [ngClass]="{'active': indexPage === 0}" (click)="indexPage = 0">
+            <i class="fa-solid fa-house-chimney-medical"></i>
+            <div class="t-min">Створення</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-box">
+      <div class="card-animation" *ngIf="indexPage === 0" [@swichCard]>
+        <div class="card">
+          <app-add-house></app-add-house>
+        </div>
+      </div>
+
+      <div class="card-animation" *ngIf="indexPage === 1" [@swichCard]>
+        <div class="card">
+          <div class="sticky-top w-100">
+            <app-delete-h></app-delete-h>
+          </div>
+          <ng-container *ngIf="allFlats || allFlatsTenant">
+
+            <div class="p-2 w-100" *ngIf="selectedFlatId">
+              <div class="pick-house pick">
+                <div class="t-med bold">Ви обрали оселю {{selectedFlatName}}</div>
+                <div class="t-med">ID оселі: {{selectedFlatId}}</div>
+              </div>
+            </div>
+
+            <div class="p-2 w-100" *ngIf="!selectedFlatId">
+              <div class="pick-house">
+                <div class="t-lar bold">Ви не обрали оселю</div>
+                <div class="t-med bold">Виберіть оселю </div>
+              </div>
+            </div>
+
+            <div class="cards-container">
+              <div class="flatsOwn w-100" *ngIf="allFlats && allFlats.length > 0">
+                <div class="t-lar bold t-c">Власні оселі</div>
+                <div class="card-mini mb-2" *ngFor="let flat of allFlats" (click)="selectFlat(flat)"
+                  [ngClass]="{ 'selected': chooseFlatID === flat.flat_id }">
+                  <div class="card-mini-img-container">
+                    <img class="card-mini-img"
+                      [src]="flat.flat_img ? serverPathPhotoFlat + flat.flat_img : serverPathPhotoFlat + 'housing_default.svg'"
+                      alt="img">
+                  </div>
+                  <div class="card-body">
+                    <div class="p-1">
+                      <div class="t-min bold t-s accent" *ngIf="chooseFlatID === flat.flat_id">Обрано оселю</div>
+
+                      <div class="t-min t-s">{{ flat.flat_name }}</div>
+                      <div class="t-lar-x bold t-s">ID: {{ flat.flat_id }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flatsTenant w-100" *ngIf="allFlatsTenant && allFlatsTenant.length > 0">
+                <div class="t-lar bold t-c">Орендовані оселі</div>
+                <div class="card-mini mb-2" *ngFor="let flat of allFlatsTenant" (click)="selectFlat(flat)"
+                  [ngClass]="{ 'selected': chooseFlatID === flat.flat_id  }">
+
+                  <div class="status-container"
+                    *ngIf="flat.acces_discuss === 1 || flat.acces_admin === 1 || flat.acces_agent === 1 || flat.acces_agreement === 1 || flat.acces_citizen === 1 || flat.acces_comunal === 1 || flat.acces_comunal_indexes === 1 || flat.acces_discuss === 1 || flat.acces_filling === 1 || flat.acces_flat_chats === 1 || flat.acces_flat_features === 1 || flat.acces_services === 1 || flat.acces_subs === 1">
+                    <div class="status-box">
+                      <div class="status-value"> Надані доступи</div>
+                    </div>
+                    <div class="status-hover ">
+                      <div class="flex-box">
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_discuss === 1">Дискусія</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_admin === 1">Адмін</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_agent === 1">Представник</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_agreement === 1">Угоди</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_citizen === 1">Мешканці</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_comunal === 1">Команльні</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_comunal_indexes === 1">Лічильник</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_filling === 1">Наповнення</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_flat_chats === 1">Чат</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_flat_features === 1">Пошук</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_services === 1">Послуги</div>
+                        <div class="t-min white bg-accent" *ngIf="flat.acces_subs === 1">Підписки</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-mini-img-container">
+                    <img class="card-mini-img"
+                      [src]="flat.flat_img? serverPathPhotoFlat + flat.flat_img : serverPathPhotoFlat + 'housing_default.svg'"
+                      alt="img">
+                  </div>
+
+                  <div class="card-body">
+                    <div class="p-1">
+                      <div class="t-min bold t-s accent" *ngIf="chooseFlatID == flat.flat_id">Обрано оселю</div>
+                      <div class="t-min t-s">{{ flat.flat_name }}</div>
+                      <div class="t-lar-x bold t-s">ID: {{ flat.flat_id }}</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<div *ngIf="statusMessage" class="status-message">
+  <div class="status-message-text">{{ statusMessage }}</div>
+  <img class="status-message-logo" src="{{path_logo}}" alt="logo">
+  <div class="status-message-name">Discussio</div>
+</div>

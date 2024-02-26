@@ -1,0 +1,29 @@
+<ng-container *ngIf="loading; else content">
+  <app-loader></app-loader>
+</ng-container>
+
+<ng-template #content>
+  <div class="container-box" *ngIf="houseData">
+    <div class="top-menu">
+      <div class="switch-name">
+        <div [@left1] *ngIf="indexPage  === 1">Профіль оселі</div>
+        <div [@left1] *ngIf="indexPage  === 2">Параметри оселі</div>
+      </div>
+      <app-menu class="menu w-100"></app-menu>
+    </div>
+    <div class="card-box" *ngIf="houseData">
+      <div *ngIf="indexPage === 0">
+        <app-selection-housing></app-selection-housing>
+      </div>
+      <div *ngIf="indexPage === 1 && houseData">
+        <app-main-info></app-main-info>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="statusMessage" class="status-message">
+  <div class="status-message-text">{{ statusMessage }}</div>
+  <img class="status-message-logo" src="{{path_logo}}" alt="logo">
+  <div class="status-message-name">Discussio</div>
+</div>

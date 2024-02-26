@@ -1,0 +1,36 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+
+.t-min {
+  text-align: start;
+}
+
+.flex-column {
+  @include flex-box-column;
+  align-items: center;
+  background-color: $color-white;
+  overflow: auto;
+  height: 100vh;
+}
+
+.logo-wrapper {
+  transition: 0.2s;
+}
+
+img {
+  width: 300px;
+  object-fit: cover;
+}
+
+.btn-group {
+  position: sticky;
+  bottom: 0;
+
+  .icon {
+    @include flex-box;
+  }
+  .btn {
+    @include flex-box;
+    background-color: $color-accent;
+  }
+}

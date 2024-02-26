@@ -1,0 +1,62 @@
+@use "app/style/presets/" as *;
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: $font-main;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $color-primary;
+}
+
+a {
+  padding: 0.5em 1em;
+  margin: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: $font-main;
+  color: $color-text;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  transition: 0.3s ease;
+
+  &.active {
+    color: $color-accent;
+  }
+
+  .fab {
+    transform: scale(1.4);
+    transition: transform 2s;
+  }
+}
+
+.img-fluid {
+  overflow: hidden;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.fa-solid,
+.fa-regular {
+  color: $color-icon;
+  font-size: 25px;
+  transition: transform 1s;
+}
+
+@media print {
+  body {
+    background-color: transparent;
+  }
+}
+
+
+

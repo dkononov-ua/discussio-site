@@ -1,0 +1,192 @@
+@use "../../../style/presets/" as *;
+@use "../../../style/mixins/" as *;
+@use "../../../style/shared.scss";
+
+.card-box {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 85vh;
+  .card-box2 {
+    height: 100%;
+    position: relative;
+    .card-animation {
+      height: 100%;
+      .card {
+        height: 100%;
+        overflow: auto;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+.user-id-box {
+  @include flex-box-center;
+  padding: 0 5px 0 5px;
+  border-bottom: $border;
+  border-top: $border;
+}
+
+.panel-menu {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  bottom: 0;
+  background-color: $color-white;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.btn-panel {
+  @include flex-box-column;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  flex: 1;
+  justify-content: space-between;
+  position: relative;
+  .panel-icon {
+    height: 100%;
+    @include flex-box-center;
+    .fa-solid,
+    .fa-regular {
+      font-size: 25px;
+      color: $color-dark;
+    }
+    .fa-star {
+      font-size: 15px;
+    }
+  }
+  .t-min {
+    font-size: 10px;
+  }
+  .img-btn {
+    @include flex-box;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    width: 80px;
+    .fa-solid,
+    .fa-regular {
+      color: $color-dark;
+    }
+  }
+}
+
+.switch-content {
+  height: 15vh;
+}
+
+.img-wrapper2 {
+  width: 100%;
+  height: 30vh;
+  .img2 {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.flex-column {
+  @include flex-box-center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-menu {
+  height: 100%;
+  width: 100%;
+}
+
+.radio-group {
+  @include flex-box;
+  justify-content: space-evenly;
+  .radio-btn {
+    @include flex-box;
+    position: relative;
+  }
+}
+
+.abs {
+  @include abs-position;
+  @include flex-box;
+  background-color: $color-white;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 30px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.abs.active {
+  color: $color-accent;
+  transform: scale(1.5);
+}
+
+.checkbox-group {
+  @include flex-box;
+  padding: 0 10px;
+  width: 100%;
+  font-family: $font-main;
+  justify-content: space-between;
+  .checkbox-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid $color-primary;
+    background-color: transparent;
+  }
+}
+
+.img-btn.active {
+  color: $color-accent;
+  transform: scale(1.1);
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.btn-close-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 50;
+  .btn-close-box {
+    @include flex-box-column;
+    align-items: flex-end;
+    padding: 10px;
+    .btn-close {
+      border: 1px solid $color-gray;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.card-reviews {
+  @include box-shadow;
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  min-height: 80px;
+  flex-direction: column;
+  align-items: flex-start;
+  .flex-box {
+    .img-review-wrapper {
+      overflow: hidden;
+      border-radius: 50%;
+      .img-review-fluid {
+        object-fit: cover;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

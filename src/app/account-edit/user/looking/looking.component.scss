@@ -1,0 +1,158 @@
+@use "../../../style/presets/" as *;
+@use "../../../style/mixins/" as *;
+@use "../../../style/radio.scss";
+@use "../../../style/shared.scss" as *;
+
+.btn-help {
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+  background-color: $color-accent;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.first-card {
+  height: 85vh;
+  @include flex-box-center;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.left-card {
+  position: absolute;
+  left: -20%;
+  width: 100%;
+  z-index: 1;
+  border-radius: 20px;
+  height: 100%;
+  .img-fluid-h {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  .img-h {
+    height: 100%;
+    border-radius: 20px;
+    transition: transform 1s;
+    object-fit: cover;
+    position: relative;
+  }
+}
+
+.right-card {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255) 40%);
+  @include flex-box-center;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.fa-solid {
+  color: $color-text;
+}
+
+.btn-group {
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.t-l {
+  text-align: left;
+}
+
+li {
+  padding: 3px;
+}
+
+.flex-box {
+  align-items: flex-start;
+  justify-content: flex-start;
+  @include s1-s3 {
+    flex-direction: column;
+  }
+}
+
+.flex-box-column {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.switch-content {
+  height: 15vh;
+}
+
+.card-box {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 85vh;
+}
+
+.card-animation {
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.item-select {
+  width: 100%;
+  font-size: 16px;
+  flex-direction: column-reverse;
+  @include s1-s3 {
+    font-size: 16px;
+  }
+}
+
+mat-hint {
+  font-size: 12px;
+  color: $color-accent;
+}
+
+mat-label {
+  font-size: 14px;
+}
+
+.btn {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-align {
+  text-align: right;
+}
+
+.hide-mobile {
+  @include s1-s3 {
+    display: none;
+  }
+}
+
+.hide-pc {
+  @include s3-s6-max {
+    display: none;
+  }
+}

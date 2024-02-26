@@ -1,0 +1,23 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+
+.flex-box {
+  @include flex-box;
+  justify-content: space-evenly;
+  .flex-column {
+    @include flex-box-column;
+  }
+}
+
+.btn-2 {
+  background-color: rgba(78, 42, 42, 0);
+  border: none;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+.fa-solid,
+.fa-regular {
+  font-size: 40px;
+  color: $color-white;
+  transition: transform 0.5s;
+}

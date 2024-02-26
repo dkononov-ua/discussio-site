@@ -1,0 +1,281 @@
+<div class="menu-container">
+
+  <div class="switch-box">
+    <div class="switch-btn-group">
+      <button [disabled]="disabledBtn" class="btn" (click)="toggleAllMenu(1)">
+        <i class="fa-solid fa-bars"></i>
+        <div class="t-min">Меню</div>
+      </button>
+      <div class="notification" *ngIf="counterUserNewAgree && counterUserNewAgree !== 0"></div>
+    </div>
+  </div>
+
+  <div class="switch-box">
+    <div class="switch-btn-group">
+      <button class="btn" [routerLink]="'/search'">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="t-min">Пошук</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="switch-box">
+    <div class="switch-btn-group">
+      <button [disabled]="disabledBtn" class="btn-logo" (click)="toggleAllMenu(5)">
+        <!-- <img class="logo" src="{{path_logo}}" alt="logo"> -->
+        <img class="logo" src="../../../assets/logo/discussio.png" alt="logo">
+      </button>
+    </div>
+  </div>
+
+  <div class="switch-box">
+    <div class="switch-btn-group">
+      <button class="btn" [routerLink]="'/house/house-info'" [routerLinkActive]="'active'">
+        <i class="fa-solid fa-person-shelter"></i>
+        <div class="t-min">Оселя</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="switch-box">
+    <div class="switch-btn-group">
+      <button class="btn" [routerLink]="'/user/info'" [routerLinkActive]="'active'">
+        <i class="fa-regular fa-circle-user"></i>
+        <div class="t-min">Профіль</div>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="menu" (click)="toggleAllMenu(1)" *ngIf="menu[1]">
+  <div [@cardAnimation]="{value: '', params: { delay: animationDelay(0) }}" class="t-lar-xx bold white t-e mr-2"
+    *ngIf="linkOpen[1]">Меню Оселі</div>
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/chat'"
+    *ngIf="linkOpen[1] && houseData && authorization && selectedFlatId && acces_flat_chats === 1">
+    <i class="fa-regular fa-comments"></i>
+    <div class="t-lar-x t-e pl-2">Повідомлення оселі</div>
+    <div class="status" *ngIf="counterHouseNewMessage && counterHouseNewMessage !== false">
+      {{counterHouseNewMessage}}
+    </div>
+  </button>
+
+  <!-- <button [disabled]="!authorization || !selectedFlatId || acces_flat_features !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(1) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/search-tenants'"
+    *ngIf="linkOpen[1] && houseData && authorization && selectedFlatId && acces_flat_chats === 1">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="t-lar-x t-e pl-2">Пошук орендаря</div>
+  </button> -->
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/selection-housing'" *ngIf="linkOpen[1]">
+    <i class="fa-solid fa-house-circle-check"></i>
+    <div class="t-lar-x t-e pl-2">Керування оселею</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(3) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/housing-parameters'"
+    *ngIf="linkOpen[1] && authorization && selectedFlatId && acces_flat_features === 1">
+    <i class="fa-solid fa-gear"></i>
+    <div class="t-lar-x t-e pl-2">Налаштування оселі</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(4) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/house/house-info'" *ngIf="linkOpen[1] && houseData && authorization">
+    <i class="fa-solid fa-person-shelter"></i>
+    <div class="t-lar-x t-e pl-2">Профіль оселі</div>
+  </button>
+
+
+  <div [@cardAnimation]="{value: '', params: { delay: animationDelay(0) }}" class="t-lar-xx bold white t-e mr-2 mt-2"
+    *ngIf="linkOpen[1]">Меню користувача</div>
+
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(1) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/information-user'" *ngIf="linkOpen[1]">
+    <i class="fa-solid fa-user-gear"></i>
+    <div class="t-lar-x t-e pl-2">Налаштування</div>
+  </button>
+
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(3) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/looking'" *ngIf="linkOpen[1]">
+    <i class="fa-solid fa-person-hiking"></i>
+    <div class="t-lar-x t-e pl-2">Профіль орендаря</div>
+  </button>
+
+  <!-- <button [@cardAnimation]="{value: '', params: { delay: animationDelay(6) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/search-house'" *ngIf="linkOpen[1]">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="t-lar-x t-e pl-2">Пошук оселі</div>
+  </button> -->
+
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(5) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/chat-host'" *ngIf="linkOpen[1]">
+    <i class="fa-regular fa-comments"></i>
+    <div class="t-lar-x t-e pl-2">Повідомлення</div>
+    <div class="status" *ngIf="counterUserNewMessage && counterUserNewMessage !== false">
+      {{counterUserNewMessage}}
+    </div>
+  </button>
+
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/user/info'" *ngIf="linkOpen[1]">
+    <i class="fa-regular fa-circle-user"></i>
+    <div class="t-lar-x t-e pl-2">Профіль користувача</div>
+  </button>
+</div>
+
+<div class="menu" (click)="toggleAllMenu(2)" *ngIf="menu[2]">
+  <div [@cardAnimation]="{value: '', params: { delay: animationDelay(0) }}" class="t-lar-xx bold white t-e mr-2"
+    *ngIf="linkOpen[2]">Меню оселі</div>
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/selection-housing'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-house-circle-check"></i>
+    <div class="t-lar-x t-e pl-2">Створення/Вибір оселі</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_flat_features !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(3) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/housing-parameters'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-gear"></i>
+    <div class="t-lar-x t-e pl-2">Налаштування</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_filling !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(5) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/house/filling'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-boxes-packing"></i>
+    <div class="t-lar-x t-e pl-2">Наповнення</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_agreement !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(6) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/house/agree-menu'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-handshake-angle"></i>
+    <div class="t-lar-x t-e pl-2">Угоди</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_comunal_indexes !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(7) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/housing-services/host-comun'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-chart-pie"></i>
+    <div class="t-lar-x t-e pl-2">Статистика</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_subs !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(8) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/subscribers-house'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-child-reaching"></i>
+    <div class="t-lar-x t-e pl-2">Підписники</div>
+    <div class="status" *ngIf="counterHouseSubscribers && counterHouseSubscribers !== 0">
+      {{counterHouseSubscribers}}
+    </div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(9) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/house/resident'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-people-roof"></i>
+    <div class="t-lar-x t-e pl-2">Мешканці</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_subs !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(10) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/subscriptions-house'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-people-pulling"></i>
+    <div class="t-lar-x t-e pl-2">Підписки</div>
+    <div class="status" *ngIf="counterHouseSubscriptions && counterHouseSubscriptions !== 0">
+      {{counterHouseSubscriptions}}
+    </div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_discuss !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(11) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/subscribers-discus'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-person-walking-luggage"></i>
+    <div class="t-lar-x t-e pl-2">Дискусії</div>
+    <div class="status" *ngIf="counterHouseDiscussio && counterHouseDiscussio !== 0">
+      {{counterHouseDiscussio}}
+    </div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_flat_features !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(1) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/search-tenants'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="t-lar-x t-e pl-2">Пошук орендаря</div>
+  </button>
+  <button [disabled]="!authorization || !selectedFlatId || acces_flat_chats !== 1"
+    [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link" [routerLinkActive]="'active'"
+    [routerLink]="'/chat'" *ngIf="linkOpen[2]">
+    <i class="fa-regular fa-comments"></i>
+    <div class="t-lar-x t-e pl-2">Повідомлення</div>
+    <div class="status" *ngIf="counterHouseNewMessage && counterHouseNewMessage !== false">
+      {{counterHouseNewMessage}}
+    </div>
+  </button>
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(4) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/house/house-info'" *ngIf="linkOpen[2]">
+    <i class="fa-solid fa-person-shelter"></i>
+    <div class="t-lar-x t-e pl-2">Профіль оселі</div>
+  </button>
+</div>
+
+<div class="menu" (click)="toggleAllMenu(5)" *ngIf="menu[5]">
+
+  <div [@cardAnimation]="{value: '', params: { delay: animationDelay(0) }}" class="t-lar-xx bold white t-e mr-2"
+    *ngIf="linkOpen[5]">Discussio
+    <div class="t-min white mr-2">version 1.01</div>
+  </div>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(1) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/support-us'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-hands-holding-child"></i>
+    <div class="t-lar-x t-e pl-2">Підтримати проект</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(2) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/user-licence'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-signature"></i>
+    <div class="t-lar-x t-e pl-2">Угода користувача</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(3) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/opportunities'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-toolbox"></i>
+    <div class="t-lar-x t-e pl-2">Функції Discussio</div>
+  </button>
+
+  <button [disabled]="!authorization" [@cardAnimation]="{value: '', params: { delay: animationDelay(4) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/feedback'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-pen-clip"></i>
+    <div class="t-lar-x t-e pl-2">Залишити відгук</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(5) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/our-team'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-brain"></i>
+    <div class="t-lar-x t-e pl-2">Розробники</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(6) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/about-project'" *ngIf="linkOpen[5]">
+    <i class="fa-solid fa-barcode"></i>
+    <div class="t-lar-x t-e pl-2">Про нас</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(8) }}" class="link"
+    [routerLinkActive]="'active'" [routerLink]="'/registration'" *ngIf="linkOpen[5] && !loginCheck">
+    <i class="fa-regular fa-circle-user"></i>
+    <div class="t-lar-x t-e pl-2">Реєстрація</div>
+  </button>
+
+  <button [@cardAnimation]="{value: '', params: { delay: animationDelay(8) }}" class="link" (click)="logout()"
+    *ngIf="linkOpen[5] && loginCheck">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <div class="t-lar-x t-e pl-2">Вийти</div>
+  </button>
+
+</div>
+
+<ng-container *ngIf="loading">
+  <app-loader></app-loader>
+</ng-container>
+
+<div *ngIf="statusMessage" class="status-message">
+  <div class="status-message-text">{{ statusMessage }}</div>
+  <img class="status-message-logo" src="{{path_logo}}" alt="logo">
+  <div class="status-message-name">Discussio</div>
+</div>

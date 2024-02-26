@@ -1,0 +1,217 @@
+@use "../../../style/presets/" as *;
+@use "../../../style/mixins/" as *;
+@use "../../../style/shared.scss";
+
+a {
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+.card-box {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.user-box {
+  border-top: $border;
+  border-bottom: $border;
+}
+
+.panel-container {
+  flex-direction: column;
+}
+
+.card-box {
+  position: relative;
+  width: 100%;
+}
+
+.switch-box {
+  width: 40%;
+}
+
+.user-id-box {
+  @include flex-box-center;
+  padding: 0 5px 0 5px;
+  border-bottom: $border;
+  border-top: $border;
+}
+
+.status {
+  @include flex-box-center;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  background-color: $color-accent;
+  color: $color-white;
+  border-radius: 50%;
+  .fa-envelope-open-text {
+    color: $color-white;
+    font-size: 15px;
+  }
+}
+
+.top-menu {
+  height: 15vh;
+}
+
+.status-container {
+  border: none;
+  background-color: transparent;
+}
+
+.panel-menu {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  bottom: 0;
+  border-radius: 20px;
+  background-color: $color-white;
+}
+
+.btn-panel {
+  @include flex-box-column;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  flex: 1;
+  justify-content: space-between;
+  position: relative;
+  .panel-icon {
+    height: 100%;
+    @include flex-box-center;
+    .fa-solid,
+    .fa-regular,
+    .fa-brands {
+      font-size: 25px;
+      color: $color-dark;
+    }
+    .fa-star {
+      font-size: 15px;
+    }
+  }
+  .t-min {
+    font-size: 10px;
+  }
+  .img-btn {
+    @include flex-box;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    width: 80px;
+    .fa-solid,
+    .fa-regular {
+      color: $color-dark;
+    }
+  }
+}
+
+.panel-container {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.carousel {
+  position: relative;
+  height: 100px;
+  @include flex-box-center;
+  justify-content: flex-start;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.823);
+  overflow: hidden;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  height: inherit;
+  animation: slideshow 15s linear infinite;
+}
+
+.price {
+  min-width: 50px;
+}
+
+.slide-item {
+  @include flex-box-center;
+  border: none;
+  border-radius: 10px;
+  flex-direction: column;
+  margin: 0 5px;
+  width: auto;
+}
+
+button {
+  background-color: transparent;
+}
+
+.carousel:hover .slide {
+  animation-play-state: paused;
+}
+
+@keyframes slideshow {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.caruesel-content {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.active {
+  .caruesel-icon {
+    color: $color-accent;
+  }
+}
+
+.caruesel-house {
+  justify-content: flex-start;
+  display: flex;
+  overflow: auto;
+  .caruesel-box {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    height: 120px;
+    padding: 10px;
+    .caruesel-card {
+      min-width: 80px;
+      flex-direction: column;
+      height: 100%;
+      @include box-shadow;
+      @include flex-box-center;
+      background-color: white;
+      border: none;
+      margin: 0px 5px;
+      border-radius: 10px;
+      .caruesel-name {
+        font-size: $t-min;
+      }
+      &.active {
+        .fa-solid {
+          color: $color-accent;
+        }
+        @include box-shadow-i;
+        color: $color-accent;
+      }
+    }
+  }
+}

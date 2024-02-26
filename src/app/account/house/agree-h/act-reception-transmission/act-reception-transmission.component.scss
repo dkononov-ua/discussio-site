@@ -1,0 +1,161 @@
+@use "../../../../style/presets/" as *;
+@use "../../../../style/mixins/" as *;
+@use "../../../../style/agree/act.doc.scss";
+@use "../agree-menu/agree-menu.component.scss";
+
+.card-box {
+  @include flex-box-column;
+  align-items: stretch;
+  height: 100vh;
+}
+
+.container-card {
+  @include flex-box-column;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.card {
+  height: 100%;
+}
+
+.flex-box {
+  align-items: stretch;
+}
+
+.btn-group {
+  border-radius: 20px;
+  background-color: transparent;
+  overflow: hidden;
+  .btn {
+    @include flex-box;
+    height: 60px;
+    flex-direction: row;
+    background-color: $color-accent;
+  }
+}
+
+.btn-group1 {
+  position: sticky;
+  bottom: 0;
+  border-radius: 20px;
+  background-color: transparent;
+  overflow: hidden;
+  .btn {
+    @include flex-box;
+    height: 60px;
+    border-radius: 20px;
+    flex-direction: row;
+    background-color: $color-accent;
+  }
+}
+
+.img-wrapper {
+  @include flex-box;
+  overflow: hidden;
+  .img-fluid {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0, 70% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.checkbox-section {
+  background-color: $color-white;
+}
+
+.card-user {
+  border-radius: 20px;
+  width: 100%;
+  background-color: $color-white;
+  @include box-shadow;
+}
+
+.btn-box-btn {
+  @include flex-box;
+  height: 60px;
+  margin: 5px 0 5px 0;
+  border: none;
+  border-radius: 20px;
+  transition: 1s;
+}
+
+.btn-box-btn.active {
+  background-color: $color-accent;
+}
+
+.card-body {
+  @include flex-box-column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  @include flex-box-column;
+  .card {
+    width: 100%;
+  }
+}
+
+.img-fluid-house {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 300px;
+  width: 100%;
+  position: relative;
+  border-radius: 10px;
+
+  .blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.754);
+    z-index: 5;
+    border-radius: 20px;
+  }
+
+  .img-house {
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 1s;
+    object-fit: cover;
+    position: relative;
+  }
+
+  .logo-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    z-index: 5;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    .logo-a {
+      width: 200px;
+      height: 200px;
+    }
+    .logo-name {
+      font-size: 30px;
+      color: $color-text;
+    }
+  }
+}
+
+.characteristics-group {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.content {
+  margin: 0;
+}

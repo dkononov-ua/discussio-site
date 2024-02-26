@@ -1,0 +1,8 @@
+<mat-form-field class="list-form w-100" appearance="fill">
+  <mat-select class="list-select" name="selectedYear" [(ngModel)]="selectedYear"
+    (selectionChange)="onSelectionChangeYear()">
+    <mat-option class="list-option" *ngFor="let year of years" [value]="year">{{year}}
+    </mat-option>
+  </mat-select>
+  <mat-hint align="end" class="t-min gray">Рік</mat-hint>
+</mat-form-field>

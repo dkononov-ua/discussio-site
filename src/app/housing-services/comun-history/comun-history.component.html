@@ -1,0 +1,307 @@
+<div class="container-card w-100 p-2">
+  <div [@right4] class="status-container">
+    <div class="status-box" *ngIf="flatInfo.calc_howmuch_pay && flatInfo.tariff">
+      <div class="status-value">Подивитись розрахунок</div>
+    </div>
+    <div class="status-hover">
+      <div class="status-hover-text">
+        <div class="status-hover-li mb-2">
+
+          <div *ngIf="flatInfo.option_sendData === 3">
+            <div class="t-med bold">Вартісь</div>
+            <div class="flex-column center border-t mt-4" *ngIf="flatInfo.tariff && area">
+              <div class="t-med bold t-s">Розрахунок</div>
+              <div class="flex-box">
+                <div class="flex-column">
+                  <div class="t-min gray">Тариф</div>
+                  <div class="t-lar-x bold gray">{{flatInfo.tariff | number: '1.2-2' }}&#8372;</div>
+                </div>
+                <div class="flex-box mr-2 ml-2">
+                  <i class="fa-solid fa-equals gray"></i>
+                </div>
+                <div class="flex-column">
+                  <div class="t-min accent">До сплати</div>
+                  <div class="t-lar-x accent">{{ flatInfo.calc_howmuch_pay | number: '1.2-2' }}&#8372;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="flatInfo.option_sendData === 1">
+            <div class="t-med bold">Лічильник</div>
+
+            <div class="flex-box center border-t">
+
+              <div class="flex-column m-1" *ngIf="flatInfo.comunal_now">
+                <div class="t-min gray">Поточні</div>
+                <div class="t-lar bold gray">{{flatInfo.comunal_now}}</div>
+              </div>
+
+              <div class="flex-box m-1" *ngIf="flatInfo.comunal_now">
+                <i class="fa-solid fa-minus gray"></i>
+              </div>
+
+              <div class="flex-column m-1" *ngIf="flatInfo.comunal_before">
+                <div class="t-min gray">Попередні</div>
+                <div class="t-lar bold gray">{{flatInfo.comunal_before}}</div>
+              </div>
+
+              <div class="flex-box m-1" *ngIf="flatInfo.comunal_before">
+                <i class="fa-solid fa-equals gray"></i>
+              </div>
+
+              <div class="flex-column m-1" *ngIf="flatInfo.consumed">
+                <div class="t-min gray">Спожито {{ selectedUnit }}</div>
+                <div class="t-lar bold gray">{{flatInfo.consumed}}</div>
+              </div>
+
+            </div>
+
+            <div class="flex-box center border-t">
+
+              <div class="flex-column m-1" *ngIf="flatInfo.consumed">
+                <div class="t-min gray">Спожито</div>
+                <div class="t-lar bold gray">{{flatInfo.consumed}}</div>
+              </div>
+
+              <div class="flex-box m-1" *ngIf="flatInfo.comunal_now">
+                <i class="fa-solid fa-xmark gray"></i>
+              </div>
+
+              <div class="flex-column m-1" *ngIf="flatInfo.tariff">
+                <div class="t-min gray">Тариф</div>
+                <div class="t-lar bold gray">{{flatInfo.tariff | number: '1.2-2'}}</div>
+              </div>
+
+              <div class="flex-box m-1" *ngIf="flatInfo.comunal_before">
+                <i class="fa-solid fa-equals gray"></i>
+              </div>
+
+              <div class="flex-column m-1" *ngIf="flatInfo.calc_howmuch_pay">
+                <div class="t-min gray">Нараховано &#8372;</div>
+                <div class="t-lar bold gray">{{flatInfo.calc_howmuch_pay | number: '1.2-2' }}</div>
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="flatInfo.option_sendData === 2">
+            <div class="t-med bold">Площа</div>
+
+            <div class="flex-column center border-t mt-4" *ngIf="area && flatInfo.tariff && flatInfo.calc_howmuch_pay">
+              <div class="t-med bold t-s">Розрахунок</div>
+              <div class="flex-box">
+                <div class="flex-column m-2">
+                  <div class="t-min gray">Площа оселі</div>
+                  <div class="t-lar-x bold gray">{{area}}м²</div>
+                </div>
+                <div class="flex-box m-2">
+                  <i class="fa-solid fa-xmark gray"></i>
+                </div>
+                <div class="flex-column m-2">
+                  <div class="t-min gray">Тариф</div>
+                  <div class="t-lar-x bold gray">{{flatInfo.tariff | number: '1.2-2' }}&#8372;</div>
+                </div>
+              </div>
+
+              <div class="flex-box">
+                <div class="flex-box m-2">
+                  <i class="fa-solid fa-equals gray"></i>
+                </div>
+
+                <div class="flex-column m-2">
+                  <div class="t-min accent">До сплати</div>
+                  <div class="t-lar-x bold accent">{{ flatInfo.calc_howmuch_pay | number: '1.2-2' }}&#8372;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [@left1] class="comun-card w-100">
+
+    <div class="copyMessage-box" *ngIf="isCopiedMessage">
+      <div class="copyMessage-text">{{isCopiedMessage}}</div>
+      <i class="fa-regular fa-copy"></i>
+      <div class="t-lar dark bold">Discussio</div>
+    </div>
+
+    <div [@right1] class="card-1">
+      <div *ngIf="!comunImg" class="img-wpapper">
+        <img class="img" [src]="selectedImageUrl ? selectedImageUrl : defaultImageUrl" alt="...">
+      </div>
+
+      <div *ngIf="comunImg" class="img-wpapper" (click)="photoViewing = true">
+        <img class="img" [src]="serverPathPhotoComunal + (comunImg ? comunImg : 'default.png')">
+      </div>
+
+      <div class="addPhoto flex-column">
+        <input #_fileInput type="file" (change)="openCropperDialog($event)" accept="image/*" hidden>
+        <button class="btn-2" (click)="_fileInput.click()">
+          <i class="fa-regular fa-image"></i>
+        </button>
+        <div class="t-min">Фото платіжки</div>
+      </div>
+
+    </div>
+
+    <div class="flex-box w-100">
+      <app-select-comun class="w-60"></app-select-comun>
+      <app-select-year class="w-40 pl-1"></app-select-year>
+    </div>
+
+    <div class="flex-box w-100 mt-2" *ngIf="currentIndex !== undefined || currentIndex !== null">
+      <div class="bold accent t-lar-xx" *ngIf="selectedMonth">{{ selectedMonth }}</div>
+      <button class="btn-2 center" (click)="prevMonth()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <app-select-month class="hide-mobile"></app-select-month>
+      <button class="btn-2 center" (click)="nextMonth()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <mat-radio-group class="flex-box w-100 mb-3" [(ngModel)]="flatInfo.option_sendData">
+      <div class="flex-column">
+        <mat-radio-button color="warn" [value]="1"></mat-radio-button>
+        <div class="t-min">Лічильник</div>
+      </div>
+      <div class="flex-column">
+        <mat-radio-button color="warn" [value]="2"></mat-radio-button>
+        <div class="t-min">Площа</div>
+      </div>
+      <div class="flex-column">
+        <mat-radio-button color="warn" [value]="3"></mat-radio-button>
+        <div class="t-min">Вартість</div>
+      </div>
+    </mat-radio-group>
+
+    <div class="input-group w-100" *ngIf="flatInfo.option_sendData === 1">
+
+      <div class="flex-box w-100 mb-3">
+
+        <mat-form-field class="w-50 m-1" appearance="outline">
+          <mat-label>Показник:</mat-label>
+          <input matInput type="number" [(ngModel)]="flatInfo.comunal_before" name="comunal_before"
+            (ngModelChange)="calculatePay()" (ngModelChange)="calculateConsumed()">
+          <mat-hint align="end" class="t-min gray">Попередній</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="w-50 m-1" appearance="outline">
+          <mat-label>Показник:</mat-label>
+          <input matInput type="number" [(ngModel)]="flatInfo.comunal_now" name="comunal_now"
+            (ngModelChange)="calculatePay()" (ngModelChange)="calculateConsumed()">
+          <mat-hint align="end" class="t-min gray">Поточний</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="flex-box w-100">
+        <mat-form-field class="w-50 m-1" appearance="outline">
+          <mat-label>Тариф:</mat-label>
+          <input matInput type="number" [(ngModel)]="flatInfo.tariff" name="tariff" (ngModelChange)="calculatePay()">
+          <mat-hint align="end" class="t-min gray"> &#8372;/{{ selectedUnit }}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="w-50 m-1" appearance="outline">
+          <mat-label>Сплатив:</mat-label>
+          <input matInput type="number" [(ngModel)]="flatInfo.howmuch_pay" name="howmuch_pay">
+          <mat-hint align="end" class="t-min gray">Фактично &#8372;</mat-hint>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div class="input-group w-100" *ngIf="flatInfo.option_sendData === 2">
+
+      <mat-form-field class="w-100 mt-2 mb-3" appearance="outline">
+        <mat-label>Тариф &#8372;/{{ selectedUnit }}:</mat-label>
+        <input matInput type="number" [(ngModel)]="flatInfo.tariff" name="tariff" (ngModelChange)="calculatePay()">
+        <mat-hint align="end" class="t-min gray">Тариф в цьому місяці:</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline" *ngIf="selectedMonth">
+        <mat-label>Сплатив &#8372;:</mat-label>
+        <input matInput type="number" [(ngModel)]="flatInfo.howmuch_pay" name="howmuch_pay">
+        <mat-hint align="end" class="t-min gray">Сплатив за {{ selectedMonth }}:</mat-hint>
+      </mat-form-field>
+
+    </div>
+
+    <div class="input-group w-100" *ngIf="flatInfo.option_sendData === 3">
+
+      <mat-form-field class="w-100 mt-2 mb-3" appearance="outline">
+        <mat-label>Тариф &#8372;/{{ selectedUnit }}:</mat-label>
+        <input matInput type="number" [(ngModel)]="flatInfo.tariff" name="tariff" (ngModelChange)="calculatePay()">
+        <mat-hint align="end" class="t-min gray">Тариф за {{ selectedMonth }}:</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline" *ngIf="selectedMonth">
+        <mat-label>Сплатив &#8372;:</mat-label>
+        <input matInput type="number" [(ngModel)]="flatInfo.howmuch_pay" name="howmuch_pay">
+        <mat-hint align="end" class="t-min gray">Сплатив за {{ selectedMonth }}:</mat-hint>
+      </mat-form-field>
+
+
+
+    </div>
+
+    <div class="form-floating mt-1">
+      <textarea #textArea class="form-control scrollable-textarea" id="floatingTextarea"
+        [(ngModel)]="flatInfo.about_pay" name="about_pay" (input)="onInput()"></textarea>
+      <label for="floatingTextarea">
+        <p>Коментар про запис:</p>
+      </label>
+    </div>
+
+  </div>
+
+  <div [@left2] class="btn-group w-100">
+    <button class="btn flex-column" (click)="clearInfo()">
+      <i class="icon fa-solid fa-eraser"></i>
+      <div class="pl-2 t-min">Очистити</div>
+    </button>
+
+    <button class="btn flex-column" (click)="copy()">
+      <i class="icon fa-regular fa-copy"></i>
+      <div class="pl-2 t-min">Копія</div>
+    </button>
+
+    <button class="btn flex-column" (click)="paste()">
+      <i class="icon fa-solid fa-paste"></i>
+      <div class="pl-2 t-min">Вставити</div>
+    </button>
+
+    <button class="btn flex-column" (click)="saveInfo()">
+      <i class="icon fa-regular fa-circle-check"></i>
+      <div class="pl-2 t-min">Зберегти</div>
+    </button>
+  </div>
+</div>
+
+<div class="full-container-img" *ngIf="serverPathPhotoComunal && photoViewing">
+  <div class="full-wrapper-img">
+    <div class="btn-close-container close-container">
+      <div class="btn-close-box">
+        <button class="btn-close" (click)="photoViewing = false"></button>
+      </div>
+    </div>
+    <img class="full-img-fluid" [src]="serverPathPhotoComunal + (comunImg ? comunImg : 'default.png')">
+  </div>
+</div>
+
+<div *ngIf="statusMessage" class="status-message">
+  <div class="status-message-text">Дані за послугу <br> <span class="accent">"{{selectedComun}}" {{ selectedMonth }} {{
+      selectedYear }}</span> <br> {{ statusMessage }}</div>
+  <img class="status-message-logo" src="{{path_logo}}" alt="logo">
+  <div class="status-message-name">Discussio</div>
+</div>

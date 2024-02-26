@@ -1,0 +1,55 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss" as *;
+
+.switch-content {
+  height: 15vh;
+}
+
+.card-box {
+  height: 85vh;
+}
+
+.card-menu1 {
+  height: 100%;
+  overflow: hidden;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-box {
+  @include flex-box;
+  justify-content: flex-end;
+}
+
+.flex-box-row {
+  width: 100%;
+}
+
+.img-wrapper {
+  .img {
+    height: 85vh;
+  }
+}
+
+.switch-btn-group {
+  .btn {
+    &.active {
+      .fa-solid {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+.container-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: stretch;
+  min-height: 70vh;
+}

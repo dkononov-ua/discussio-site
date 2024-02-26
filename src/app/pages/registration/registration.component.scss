@@ -1,0 +1,187 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss" as *;
+
+.container-reg {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-accent;
+  // background-image: linear-gradient(to top, white 0%, $color-accent 5%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  .card-greeting {
+    @include flex-box-column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+.flex-column {
+  @include flex-box-column;
+}
+
+.card-box {
+  @include flex-box-column;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  .card-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .card1 {
+      @include flex-box-column;
+      justify-content: center;
+      background-color: rgb(255, 255, 255);
+      height: 100vh;
+      width: 100%;
+    }
+  }
+}
+
+.btn-group2 {
+  @include flex-box;
+  width: 100%;
+  .btn2 {
+    background-color: $color-white;
+    border: none;
+    @include box-shadow;
+    padding: 10px;
+    border-radius: 20px;
+  }
+}
+
+.inputbox {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.input-email {
+  height: 100px;
+}
+
+.card-box-logo {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 25vh;
+  position: relative;
+  @include s1-s3 {
+    height: auto;
+    justify-content: flex-start;
+  }
+}
+
+a {
+  padding: 0;
+  margin: 0;
+  text-transform: lowercase;
+  color: $color-accent;
+  display: inline;
+}
+
+.alert-danger {
+  color: $color-accent;
+  font-size: 12px;
+  left: 0;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  height: 150px;
+  width: 100%;
+  filter: drop-shadow(0px 10px 25px rgb(52, 52, 52));
+}
+
+.logoMin {
+  height: 100px;
+  width: 100%;
+  filter: drop-shadow(0px 10px 25px rgb(41, 41, 41));
+}
+
+.btn {
+  height: 50px;
+  font-size: 16px;
+  color: $color-white;
+  background-color: $color-gray;
+  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  width: 100%;
+  background-color: $color-accent;
+}
+
+.disabled-button {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
+
+.box-agree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-none {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  font-weight: 600;
+  color: $color-accent;
+  @include s3-s6-max {
+    &:hover {
+      color: $color-accent;
+      filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+    }
+  }
+}
+
+.btn-none.disabled-button {
+  color: $color-gray;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.see {
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  position: absolute;
+  background: none;
+  border: none;
+}
+
+.error-message {
+  font-size: 12px;
+  color: rgba(255, 0, 0, 0.663);
+}
+
+.fa-solid,
+.fa-regular {
+  font-size: 18px;
+  color: $color-dark;
+}

@@ -1,0 +1,51 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+
+.wrapper {
+  @include flex-box;
+  overflow: hidden;
+  height: 100%;
+  img {
+    @include box-shadow;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+}
+
+.title {
+  position: sticky;
+  top: 0;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%)
+}
+
+.flex-box {
+  @include flex-box;
+}
+
+.card {
+  height: 100vh;
+  overflow: auto;
+}
+
+.flex-column {
+  @include flex-box-column;
+}
+
+.fab {
+  font-size: 25px;
+}
+
+.btn-group {
+  position: sticky;
+  bottom: 0;
+  height: 60px;
+
+  .icon {
+    @include flex-box;
+  }
+  .btn {
+    @include flex-box;
+  }
+}

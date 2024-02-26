@@ -1,0 +1,381 @@
+<div class="card-content">
+  <div class="card-animation" *ngIf="indexPage === 1">
+    <div class="card">
+
+      <div class="copyMessage-box" *ngIf="isCopiedMessage">
+        <div class="copyMessage-text">{{isCopiedMessage}}</div>
+        <i class="fa-regular fa-copy"></i>
+        <div class="t-lar dark bold">Discussio</div>
+      </div>
+
+      <div [@swichCard] class="container-img" (panstart)="onPanStartImg($event)" (panend)="onPanEndImg($event)">
+        <div class="status-container m-2" (click)="indexPage = 3">
+          <div class="status-box">
+            <div class="status-value" *ngIf="HouseInfo.rent === 1">Активне</div>
+            <div class="status-value" *ngIf="HouseInfo.private === 1">Приватно</div>
+          </div>
+        </div>
+        <div class="wrapper-img">
+          <img class="img-fluid w-100"
+            [src]="HouseInfo.photos && HouseInfo.photos[currentPhotoIndex].img ? serverPathPhotoFlat + HouseInfo.photos[currentPhotoIndex].img : serverPathPhotoFlat + 'housing_default.svg'"
+            alt="img">
+          <div *ngIf="HouseInfo.photos.length > 1">
+            <button *ngIf="currentPhotoIndex !== 0" class="prev-img" (click)="prevPhoto()"><i
+                class="fa-solid fa-chevron-left"></i></button>
+            <button *ngIf="currentPhotoIndex !== HouseInfo.photos.length - 1" class="next-img" (click)="nextPhoto()"><i
+                class="fa-solid fa-chevron-right"></i></button>
+          </div>
+          <div class="panel-container">
+            <div class="caruesel-house w-100">
+              <div class="carousel w-100">
+                <div class="slide">
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.region">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold accent">Інформація</div>
+                      <div class="t-med accent">про оселю</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.region">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.region }}</div>
+                      <div class="t-min">Область</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.city">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.city }}</div>
+                      <div class="t-min">Місто</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.street">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.street }} </div>
+                      <div class="t-min">Вулиця</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.rooms">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.houseNumber }}</div>
+                      <div class="t-min bg-w">Будинок</div>
+                    </div>
+                  </div>
+
+                  <button class="slide-item" (click)="copyFlatId()">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="btn-panel">
+                        <div class="panel-icon">
+                          <i class="fa-solid fa-fingerprint"></i>
+                        </div>
+                      </div>
+                      <div class="t-min bg-w">ID - {{HouseInfo.flat_id}}</div>
+                    </div>
+                  </button>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.floor">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.floor }}</div>
+                      <div class="t-min bg-w">Поверх</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.apartment">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.apartment }}</div>
+                      <div class="t-min bg-w">Квартира</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.rooms">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.rooms }}</div>
+                      <div class="t-min bg-w">Кімнат</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.area">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.area | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w">Площа</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.price_m && HouseInfo.option_pay === 0">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold accent price">{{ HouseInfo.price_m | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w accent">₴/міс</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.price_d && HouseInfo.option_pay !== 0">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold accent price">{{ HouseInfo.price_d | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w accent">₴/добу</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="slide">
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.region">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold accent">Інформація</div>
+                      <div class="t-med accent">про оселю</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.region">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.region }}</div>
+                      <div class="t-min">Область</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.city">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.city }}</div>
+                      <div class="t-min">Місто</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.street">
+                    <div mat-raised-button class="flex-column">
+                      <div class="t-lar bold">{{ HouseInfo.street }} </div>
+                      <div class="t-min">Вулиця</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.rooms">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.houseNumber }}</div>
+                      <div class="t-min bg-w">Будинок</div>
+                    </div>
+                  </div>
+
+                  <button class="slide-item" (click)="copyFlatId()">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="btn-panel">
+                        <div class="panel-icon">
+                          <i class="fa-solid fa-fingerprint"></i>
+                        </div>
+                      </div>
+                      <div class="t-min bg-w">ID - {{HouseInfo.flat_id}}</div>
+                    </div>
+                  </button>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.floor">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.floor }}</div>
+                      <div class="t-min bg-w">Поверх</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item m-1" *ngIf="HouseInfo.apartment">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.apartment }}</div>
+                      <div class="t-min bg-w">Квартира</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.rooms">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.rooms }}</div>
+                      <div class="t-min bg-w">Кімнат</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.area">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold">{{ HouseInfo.area | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w">Площа</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.price_m && HouseInfo.option_pay === 0">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold accent price">{{ HouseInfo.price_m | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w accent">₴/міс</div>
+                    </div>
+                  </div>
+
+                  <div class="slide-item" *ngIf="HouseInfo.price_d && HouseInfo.option_pay !== 0">
+                    <div mat-raised-button class="param-g flex-column">
+                      <div class="bg-g t-lar-x bold accent price">{{ HouseInfo.price_d | number:'1.0-0' }}</div>
+                      <div class="t-min bg-w accent">₴/добу</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caruesel-content">
+        <div class="flex-box w-100 border-bottom ">
+          <div class="t-med t-s bold pl-2">Доступні функції оселі</div>
+          <i class="fa-solid fa-left-right gray pl-2"></i>
+        </div>
+        <div class="caruesel-house">
+          <div class="caruesel-box">
+
+            <button [ngClass]="{'active': HouseInfo.rent === 1}" class="caruesel-card"
+              [routerLink]="'/housing-parameters'" [queryParams]="{ indexPage: 4 }"
+              *ngIf="HouseInfo.rent === 1 && acces_flat_features === 1">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-sign-hanging"></i>
+              </div>
+              <div class="caruesel-name">Оголошення <br> активовано</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/search-tenants'" *ngIf="acces_flat_features === 1">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="caruesel-name">Пошук <br> орендаря</div>
+            </button>
+
+            <button class="caruesel-card" (click)="indexPage = 3">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-outdent"></i>
+              </div>
+              <div class="caruesel-name">Параметри <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" (click)="indexPage = 2">
+              <div class="caruesel-icon">
+                <i class="fa-regular fa-address-book"></i>
+              </div>
+              <div class="caruesel-name">Допоміжня <br> інформація</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/selection-housing'">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-house-circle-check"></i>
+              </div>
+              <div class="caruesel-name">Вибір <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" *ngIf="HouseInfo.region && HouseInfo.city && HouseInfo.street"
+              (click)="openMap()">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="caruesel-name">Локація <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/house/resident'">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-people-roof"></i>
+              </div>
+              <div class="caruesel-name">Мешканці <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/house/filling'"
+              *ngIf="authorization && selectedFlatId && acces_filling === 1">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-boxes-packing"></i>
+              </div>
+              <div class="caruesel-name">Наповн. <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/housing-parameters'"
+              *ngIf="acces_flat_features === 1 && acces_admin === 1 && acces_added === 1">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-gears"></i>
+              </div>
+              <div class="caruesel-name">Налашт. <br> оселі</div>
+            </button>
+
+            <button class="caruesel-card" [routerLink]="'/housing-services/host-comun'"
+              *ngIf="authorization && selectedFlatId && acces_comunal_indexes === 1">
+              <div class="caruesel-icon">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+              <div class="caruesel-name">Статист. <br> оселі</div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-menu p-2">
+
+        <button class="btn-panel" [routerLink]="'/house/agree-menu'" *ngIf="acces_agreement === 1">
+          <div class="panel-icon">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <div class="t-min">Угоди</div>
+        </button>
+
+        <button class="btn-panel" [routerLink]="'/subscriptions-house'" *ngIf="acces_subs === 1">
+          <div class="panel-icon">
+            <i class="fa-solid fa-people-pulling"></i>
+          </div>
+          <div class="t-min">Підписки</div>
+          <div class="status" *ngIf="counterHouseSubscriptions && counterHouseSubscriptions !== 0">
+            {{counterHouseSubscriptions}}
+          </div>
+        </button>
+
+        <button class="btn-panel" [routerLink]="'/subscribers-house'" *ngIf="acces_subs === 1">
+          <div class="panel-icon">
+            <i class="fa-solid fa-child-reaching"></i>
+          </div>
+          <div class="t-min">Підписники</div>
+          <div class="status" *ngIf="counterHouseSubscribers && counterHouseSubscribers !== 0">
+            {{counterHouseSubscribers}}
+          </div>
+        </button>
+
+        <button class="btn-panel" [routerLink]="'/subscribers-discus'" *ngIf="acces_discuss === 1">
+          <div class="panel-icon">
+            <i class="fa-solid fa-person-walking-luggage"></i>
+          </div>
+          <div class="t-min">Дискусії</div>
+          <div class="status" *ngIf="counterHouseDiscussio && counterHouseDiscussio !== 0">
+            {{counterHouseDiscussio}}
+          </div>
+        </button>
+
+        <button class="btn-panel" [routerLink]="'/chat'" *ngIf="acces_flat_chats === 1">
+          <div class="panel-icon">
+            <i class="fa-regular fa-message"></i>
+          </div>
+          <div class="t-min">Повід.</div>
+          <div class="status" *ngIf="counterHouseNewMessage && counterHouseNewMessage !== false">
+            {{counterHouseNewMessage}}
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation" *ngIf="indexPage === 2">
+    <div class="card p-2">
+      <app-house-share></app-house-share>
+      <div class="btn-group">
+        <button class="btn" (click)="indexPage = 1">Назад</button>
+      </div>
+    </div>
+  </div>
+  <div [@swichCard] class="card-animation" *ngIf="indexPage === 3">
+    <div class="card p-2">
+      <app-parameters></app-parameters>
+      <div class="btn-group">
+        <button class="btn" (click)="indexPage = 1">Назад</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="statusMessage" class="status-message">
+  <div class="status-message-text">{{ statusMessage }}</div>
+  <img class="status-message-logo" src="{{path_logo}}" alt="logo">
+  <div class="status-message-name">Discussio</div>
+</div>

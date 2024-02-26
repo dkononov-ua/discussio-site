@@ -1,0 +1,92 @@
+@use "../presets" as *;
+@use "../mixins/mixins-media";
+
+@mixin container {
+  max-width: $ul;
+  margin: auto;
+  padding-right: $gap;
+  padding-left: $gap;
+}
+
+@mixin flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-box-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-box-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin flex-box-column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flex-box-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+@mixin text-shortener {
+  display: block;
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+@mixin unlist($m: 0, $p: 0) {
+  margin: $m;
+  padding: $p;
+  list-style: none;
+}
+
+@mixin abs-position($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin pos-abs-l() {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin box-shadow {
+  box-shadow: -3px 3px 20px -10px darken($color-gray, 40%);
+}
+
+@mixin box-shadow-a {
+  box-shadow: -3px 3px 20px -10px darken($color-accent, 40%);
+}
+
+@mixin box-shadow-i {
+  box-shadow: inset -3px 3px 20px -10px darken($color-gray, 40%);
+}

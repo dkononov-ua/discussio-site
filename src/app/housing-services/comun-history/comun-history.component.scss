@@ -1,0 +1,239 @@
+@use "../housing-services.component.scss";
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss" as *;
+
+.flex-box {
+  display: flex;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: flex-end;
+  height: 100%;
+  align-content: space-between;
+  .comun-card {
+    @include flex-box-column;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .btn-group {
+    height: 60px;
+  }
+}
+.container-card::-webkit-scrollbar {
+  display: none;
+}
+.comun-card::-webkit-scrollbar {
+  display: none;
+}
+.card-1 {
+  width: 100%;
+  position: relative;
+  @include box-shadow;
+  border-radius: 20px;
+
+  .addPhoto {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+  }
+
+  .img-wpapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    align-items: flex-end;
+  }
+
+  .img {
+    overflow: hidden;
+    height: 100px;
+    width: 100%;
+    border-radius: 20px;
+    transition: transform 1s;
+    object-fit: cover;
+    position: relative;
+  }
+}
+
+.item-select {
+  position: relative;
+}
+
+.btn-copy {
+  position: absolute;
+  font-size: 30px;
+  right: 0;
+  top: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 2px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.btn-2 {
+  @include flex-box;
+  width: 50px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.flex-box {
+  justify-content: space-evenly;
+  .fa-solid {
+    font-size: 15px;
+  }
+}
+
+.flex-column {
+  @include flex-box-column;
+}
+
+.img-comun-box {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  .img-comun {
+    height: 200px;
+  }
+  .cropped-text {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    @include flex-box;
+    background-color: rgba(90, 86, 86, 0.591);
+    .cropped-text1 {
+      color: $color-white;
+    }
+  }
+}
+
+.border-t {
+  border-top: 1px solid $color-primary;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: auto;
+  position: relative;
+}
+
+.about {
+  font-size: 13px;
+}
+
+.description {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.formula {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.name {
+  text-align: center;
+}
+
+.card-btn-container {
+  border-radius: 10px;
+}
+
+.add-photo-group {
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .add-photo-label {
+    width: 50%;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 15px;
+    color: $color-accent;
+    font-weight: 600;
+  }
+
+  .box-group {
+    @include flex-box-column;
+    position: relative;
+
+    .btn-name {
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .add-photo-box {
+    cursor: pointer;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid $color-accent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.22);
+    transition: 1s;
+
+    &:hover {
+      background-color: $color-dark;
+    }
+  }
+
+  .add-photo-icon {
+    color: $color-accent;
+    font-size: 30px;
+    animation: iconflicker 8s linear infinite;
+  }
+
+  .add-photo-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.item {
+  @include flex-box;
+  margin: 2px;
+  border-radius: 10px;
+  padding: 2px;
+}
